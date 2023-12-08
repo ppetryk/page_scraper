@@ -18,11 +18,16 @@ class Api::BuildDataResponse
 
     @scrapers = []
     @scrapers << ScrapeHtml::CssSelector.new(document, css_selectors)
+    @scrapers << ScrapeHtml::MetaTag.new(document, meta_tags)
 
     @scrapers
   end
 
   def css_selectors
-    @fields
+    @fields.reject { |field| field == 'meta' }
+  end
+
+  def meta_tags
+    @fields.select { |field| field == 'meta' }
   end
 end
