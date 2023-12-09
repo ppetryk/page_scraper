@@ -6,23 +6,24 @@ class GetHtmlDocument
   end
 
   def call
-    Nokogiri::HTML(response_body(zen_rows_get))
+    Nokogiri::HTML(zen_rows_get_with_caching)
   end
 
   protected
 
   # Some pages may be protected by security tools like Cloudflare
   # And regular HTTP requests will be blocked and return 403 Forbidden
-  # To bypass the security check will need to use ZenRows
+  # To bypass the security check, we need to use ZenRows
   def zen_rows_get
     proxy = "http://#{ZEN_ROWS_API_KEY}:@proxy.zenrows.com:8001"
     connection = Faraday.new(proxy: proxy, ssl: { verify: false })
     connection.options.timeout = 180
 
-    connection.get(@url, nil, nil)
+    response = connection.get(@url, nil, nil)
+    response.status == 200 ? response.body : nil
   end
 
-  def response_body(response)
-    response.status == 200 ? response.body : nil
+  def zen_rows_get_with_caching
+    Rails.cache.fetch(@url, expires_in: 6.hours) { zen_rows_get }
   end
 end
