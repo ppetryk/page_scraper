@@ -1,3 +1,5 @@
+class HtmlDocumentNotFound < StandardError; end
+
 class GetHtmlDocument
   ZEN_ROWS_API_KEY = "ed99895737ff355d8eb66eabe86ecfd4bb39a78c".freeze
 
@@ -20,7 +22,12 @@ class GetHtmlDocument
     connection.options.timeout = 180
 
     response = connection.get(@url, nil, nil)
-    response.status == 200 ? response.body : nil
+
+    if response.status == 200
+      response.body
+    else
+      raise HtmlDocumentNotFound, 'The specified page cannot be found'
+    end
   end
 
   def zen_rows_get_with_caching

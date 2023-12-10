@@ -1,7 +1,7 @@
 class Api::HomeController < ApplicationController
   def data
-    response = Api::BuildDataResponse.new(permitted_params).call
-    render json: response, status: :ok
+    status, response = Api::BuildDataResponse.new(permitted_params).call
+    render json: response, status: status
   end
 
   protected

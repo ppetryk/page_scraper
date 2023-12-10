@@ -1,10 +1,19 @@
 class Api::BuildDataResponse
+  SUCCESS_STATUS = 200
+  BAD_REQUEST_STATUS = 400
+  NOT_FOUND_STATUS = 404
+
   def initialize(params)
     @url, @fields = params[:url], params[:fields]
   end
 
   def call
-    scrapers.map(&:call).reduce({}, :merge)
+    response = build_response
+    [SUCCESS_STATUS, response]
+  rescue HtmlDocumentNotFound => err
+    [NOT_FOUND_STATUS, { 'error' => err.message }]
+  rescue StandardError
+    [BAD_REQUEST_STATUS, { 'error' => 'Something went wrong' }]
   end
 
   protected
@@ -29,5 +38,9 @@ class Api::BuildDataResponse
 
   def meta_tags
     @fields.select { |field| field == 'meta' }
+  end
+
+  def build_response
+    scrapers.map(&:call).reduce({}, :merge)
   end
 end
