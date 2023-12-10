@@ -1,7 +1,7 @@
 class HtmlDocumentNotFound < StandardError; end
 
 class GetHtmlDocument
-  ZEN_ROWS_API_KEY = "ed99895737ff355d8eb66eabe86ecfd4bb39a78c".freeze
+  ZEN_ROWS_API_KEY = "ed99895737ff355d8eb66eabe86ecfd4bb39a78c".freeze # TOD0: move API key outside of the repo
 
   def initialize(url)
     @url = url
