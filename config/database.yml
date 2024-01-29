@@ -81,7 +81,7 @@ test:
 #
 production:
   <<: *default
-  database: page_scraper_production
-  username: ebroot
-  password: g00Dn1ght
-  host: page-scraper.cjakc22sosyt.eu-central-1.rds.amazonaws.com
+  database: <%= ENV["RDS_DB_NAME"] %>
+  username: <%= ENV["RDS_USERNAME"] %>
+  password: <%= ENV["RDS_PASSWORD"] %>
+  host: <%= ENV["RDS_HOST"] %>
