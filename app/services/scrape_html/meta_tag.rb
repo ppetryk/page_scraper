@@ -1,7 +1,7 @@
 module ScrapeHtml
   class MetaTag < Base
     def initialize(document, meta_tags)
-      super document
+      super(document)
       @meta_tags = meta_tags
     end
 

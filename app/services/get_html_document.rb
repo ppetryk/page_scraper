@@ -18,16 +18,14 @@ class GetHtmlDocument
   # To bypass the security check, we need to use ZenRows
   def zen_rows_get
     proxy = "http://#{ZEN_ROWS_API_KEY}:@proxy.zenrows.com:8001"
-    connection = Faraday.new(proxy: proxy, ssl: { verify: false })
+    connection = Faraday.new(proxy:, ssl: { verify: false })
     connection.options.timeout = 180
 
     response = connection.get(@url, nil, nil)
 
-    if response.status == 200
-      response.body
-    else
-      raise HtmlDocumentNotFound, 'The specified page cannot be found'
-    end
+    raise(HtmlDocumentNotFound, 'The specified page cannot be found') unless response.status == 200
+
+    response.body
   end
 
   def zen_rows_get_with_caching

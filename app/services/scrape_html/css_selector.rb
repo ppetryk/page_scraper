@@ -1,7 +1,7 @@
 module ScrapeHtml
   class CssSelector < Base
     def initialize(document, css_selectors)
-      super document
+      super(document)
       @css_selectors = css_selectors
     end
 

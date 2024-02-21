@@ -1,7 +1,7 @@
 class Api::HomeController < ApplicationController
   def data
     status, response = Api::BuildDataResponse.new(permitted_params).call
-    render json: response, status: status
+    render json: response, status:
   end
 
   protected

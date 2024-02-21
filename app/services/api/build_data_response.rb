@@ -10,8 +10,8 @@ class Api::BuildDataResponse
   def call
     response = build_response
     [SUCCESS_STATUS, response]
-  rescue HtmlDocumentNotFound => err
-    [NOT_FOUND_STATUS, { 'error' => err.message }]
+  rescue HtmlDocumentNotFound => e
+    [NOT_FOUND_STATUS, { 'error' => e.message }]
   rescue StandardError
     [BAD_REQUEST_STATUS, { 'error' => 'Something went wrong' }]
   end

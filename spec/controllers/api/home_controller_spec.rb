@@ -27,7 +27,7 @@ describe Api::HomeController, type: :controller do
           item: '.item-name',
           price: '#price-box',
           quantity: '#quantity',
-          meta: ['keywords', 'description']
+          meta: %w[keywords description]
         }
       }
     end
@@ -38,7 +38,7 @@ describe Api::HomeController, type: :controller do
       allow_any_instance_of(GetHtmlDocument).to receive(:zen_rows_get).and_return html_document
     end
 
-    subject { get :data, params: params }
+    subject { get :data, params: }
 
     it 'succeeds' do
       subject
