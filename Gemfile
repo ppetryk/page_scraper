@@ -53,6 +53,7 @@ gem "nokogiri", '~> 1.16'
 
 gem "bundler-audit"
 gem 'brakeman', '~> 6.1'
+gem 'rubocop', '~> 1.60'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
