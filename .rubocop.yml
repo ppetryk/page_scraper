@@ -19,4 +19,5 @@ AllCops:
     - bin/**/*
     - config/**/*
     - spec/spec_helper.rb
+    - vendor/**/*
   NewCops: enable
