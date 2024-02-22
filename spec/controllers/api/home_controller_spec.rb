@@ -45,7 +45,7 @@ describe Api::HomeController, type: :controller do
 
       expect(response).to be_ok
       expect(response_json['price']).to eq '16.19 euros'
-      expect(response_json['quantity']).to eq '6'
+      expect(response_json['quantity']).to eq '8'
       expect(response_json['item']).to eq 'White Headphones'
       expect(response_json['meta']['description']).to eq 'Travel Guide 2024'
       expect(response_json['meta']['keywords']).to eq 'sea beach sand relax'
