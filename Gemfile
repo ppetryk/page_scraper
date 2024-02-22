@@ -51,14 +51,13 @@ gem "bootsnap", require: false
 gem "faraday"
 gem "nokogiri", '~> 1.16'
 
-gem "bundler-audit"
-gem 'brakeman', '~> 6.1'
-gem 'rubocop', '~> 1.60'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "pry"
+
+  gem 'rubocop', '~> 1.60'
 end
 
 group :development do
