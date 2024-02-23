@@ -1,5 +1,5 @@
 ---
-name: Security checks
+name: Security Checks
 on:
   schedule:
     - cron: 12 12 25 * *
