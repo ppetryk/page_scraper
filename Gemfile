@@ -57,6 +57,8 @@ group :development, :test do
   gem "pry"
 
   gem 'rubocop', '~> 1.60'
+  gem 'bundler-audit', '~> 0.9.1'
+  gem 'brakeman', '~> 6.1'
 end
 
 group :development do
